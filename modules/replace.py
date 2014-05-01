@@ -9,7 +9,7 @@ class Replace(Module):
     def __init__(self):
         super(Replace, self).__init__("replace")
 
-        self.regex = re.compile("^[sS](.)(((?!\\1).)*)\\1(((?!\\1).)*)(\\1(((?!\\1).)*))?$")
+        self.regex = re.compile("^[sS]([^\w\s])(((?!\\1).)*)\\1(((?!\\1).)*)(\\1(((?!\\1).)*))?$")
         self.history = []
 
     def on_chat(self, message):

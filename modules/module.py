@@ -17,7 +17,6 @@ class StatusModule(Module):
     def __init__(self, id, on=[]):
         super(StatusModule, self).__init__(id)
         self.on = on
-        self.known = None
 
     def init(self):
         threading.Thread(target=self._repeated_poll).start()

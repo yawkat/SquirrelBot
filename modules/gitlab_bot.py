@@ -7,7 +7,6 @@ class Gitlab(git_shared.GitModule):
         self.project = project
 
         self.git = gitlab.Gitlab(url, token=auth)
-        self.known = None
 
     def _poll(self):
         commits = self.git.listrepositorycommits(self.project)

@@ -14,9 +14,10 @@ class Module(object):
         pass
 
 class StatusModule(Module):
-    def __init__(self, id, on=[]):
+    def __init__(self, id, on=[], rate=5):
         super(StatusModule, self).__init__(id)
         self.on = on
+        self.rate = rate
 
     def init(self):
         threading.Thread(target=self._repeated_poll).start()
@@ -28,7 +29,7 @@ class StatusModule(Module):
                 self._poll_indexed(i)
             except:
                 traceback.print_exc()
-            time.sleep(5)
+            time.sleep(self.rate)
             i = i + 1
 
     def _poll_indexed(self, index):

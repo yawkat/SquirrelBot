@@ -3,7 +3,7 @@ import github
 
 class Github(git_shared.GitModule):
     def __init__(self, id, on, name, project, auth = None):
-        super(Github, self).__init__(id, on, name)
+        super(Github, self).__init__(id, on, name, rate=10)
         self.git = github.Github(login_or_token=auth)
         self.repo = self.git.get_repo(project)
 

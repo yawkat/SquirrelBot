@@ -10,9 +10,9 @@ class GitModule(module.StatusModule):
         self.known = set()
         self.first = True
 
-    def _poll(self, i):
+    def _poll_indexed(self, i):
         self.first = i == 0
-        super(GitModule, self)._poll(self, i)
+        super(GitModule, self)._poll_indexed(i)
 
     def _commit(self, id, description, author):
         if not id in self.known:

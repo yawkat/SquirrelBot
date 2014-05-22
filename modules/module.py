@@ -26,13 +26,13 @@ class StatusModule(Module):
         i = 0
         while 1:
             try:
-                self._poll(i)
+                self._poll_indexed(i)
             except:
                 traceback.print_exc()
             time.sleep(5)
             i = i + 1
 
-    def _poll(self, index):
+    def _poll_indexed(self, index):
         self._poll()
 
     def _poll(self):

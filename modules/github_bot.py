@@ -12,4 +12,4 @@ class Github(git_shared.GitModule):
         commits = self.repo.get_commits().get_page(0)
         commits.reverse()
         for commit in commits:
-            self._commit(commit.sha, commit.commit.message, commit.commiter.name)
+            self._commit(commit.sha, commit.commit.message, commit.committer.name)

@@ -93,6 +93,9 @@ class Channel(object):
     def chat(self, message):
         self.send(Chat(message))
 
+    def me(self, message):
+        self.send(Me(message))
+
     def add_chat_listener(self, listener):
         self.connection._add_handler("pubmsg", lambda evt, listener=listener: self._call_chat(listener, evt))
 
@@ -111,6 +114,10 @@ class Chat(SendableMessage):
     def _run(self, channel):
         print "Sending " + self.message
         channel.connection._connection.privmsg(channel.name, self.message)
+
+class Me(Chat):
+    def __init__(self, message):
+        super(Me, self).__init__("\x01ACTION " + message + "\x01")
 
 class ReceivedMessage(object):
     pass

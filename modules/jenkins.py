@@ -16,7 +16,6 @@ class Jenkins(Module):
         self.auth = auth
 
         self.last_id = None
-        self.building = None
 
     def init(self):
         threading.Thread(target=self._repeated_poll).start()
@@ -46,12 +45,6 @@ class Jenkins(Module):
             self._broadcast(message)
 
         self.last_id = last_id
-
-        building = result["lastBuild"]["number"] != last_id
-        if self.building is not None and self.building != building and building:
-            message = self.name + " is now building."
-            self._broadcast(message)
-        self.building = building
 
     def _broadcast(self, message):
         for name in self.on:

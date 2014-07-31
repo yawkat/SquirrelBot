@@ -9,9 +9,10 @@ import traceback
 import threading
 
 class YoutubeSearch(Module):
-    def __init__(self, id, api_key, search_term):
+    def __init__(self, id, api_key, channels, search_term):
         super(YoutubeSearch, self).__init__(id)
         self.api_key = api_key
+        self.channels = channels
         self.search_term = search_term
 
         self.last_upload_time = None

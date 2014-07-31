@@ -1,4 +1,4 @@
-from module import Module
+from module import StatusModule
 from irc_format import *
 
 import urllib

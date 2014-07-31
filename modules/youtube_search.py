@@ -36,8 +36,12 @@ class YoutubeSearch(Module):
         response = json.load(req)
         if self.last_upload_time is not None:
             for video in response["items"][:3]: # limit to 3 videos
+                if video["snippet"]["publishedAt"] == self.last_upload_time:
+                    continue
                 message = BOLD + "[youtube]" + RESET + " \"" + video["snippet"]["title"] + "\" by " + video["snippet"]["channelTitle"]
                 self._broadcast(message)
+        if len(response["items"]) is not 0:
+            self.last_upload_time = response["items"][0]["snippet"]["publishedAt"]
 
     def _broadcast(self, message):
         for name in self.on:

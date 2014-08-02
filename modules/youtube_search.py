@@ -27,7 +27,7 @@ class YoutubeSearch(StatusModule):
             for video in response["items"][:3]: # limit to 3 videos
                 if video["snippet"]["publishedAt"] == self.last_upload_time:
                     break
-                message = BOLD + "[youtube]" + RESET + " \"" + video["snippet"]["title"] + "\" by " + video["channelTitle"] + " http://youtu.be/" + video["id"]["videoId"]
+                message = BOLD + "[youtube]" + RESET + " \"" + video["snippet"]["title"] + "\" by " + video["snippet"]["channelTitle"] + " http://youtu.be/" + video["id"]["videoId"]
                 self._broadcast(message)
         if len(response["items"]) is not 0:
             self.last_upload_time = response["items"][0]["snippet"]["publishedAt"]
